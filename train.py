@@ -29,7 +29,7 @@ def main():
     ]), download=True)
     cifar_test = DataLoader(cifar_test, batch_size=batchz, shuffle=True)
 
-    device = torch.device('cpu')  # 使用CPU
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # 使用CUDA or CPU
     # 确保 ResNet18 模型定义正确
     model = ResNet18().to(device)
     crition = nn.CrossEntropyLoss().to(device)
